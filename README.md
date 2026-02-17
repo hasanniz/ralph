@@ -23,13 +23,13 @@ Each iteration gets a **fresh context window** — Claude relies on `prd.json`, 
 
 ```bash
 # Copy these files into your project (or a subfolder like scripts/ralph/)
-cp ralph.sh cancel.sh PROMPT.md prd.example.json /path/to/your/project/
+cp ralph.sh cancel.sh PROMPT.md prd.template.json /path/to/your/project/
 ```
 
 ### 2. Create your task list
 
 ```bash
-cp prd.example.json prd.json
+cp prd.template.json prd.json
 ```
 
 Edit `prd.json` with your tasks. Each task needs:
@@ -83,7 +83,8 @@ git log --oneline
 | `ralph.sh` | The bash loop that runs Claude Code repeatedly |
 | `cancel.sh` | Gracefully stop a running Ralph loop |
 | `PROMPT.md` | Instructions Claude receives each iteration (customize for your project) |
-| `prd.example.json` | Template task list — copy as `prd.json` and fill in your tasks |
+| `prd.template.json` | Blank template — copy as `prd.json` and fill in your tasks |
+| `prd.example.json` | Complete example (a Node.js todo CLI) showing what a real PRD looks like |
 | `prd.json` | Your task list (created by you, gitignored) |
 | `progress.txt` | Auto-populated log of what each iteration accomplished (gitignored) |
 

@@ -1,15 +1,16 @@
 {
-  "project": "MyApp",
-  "branchName": "ralph/feature-name",
-  "description": "Short description of what you're building",
+  "project": "todo-cli",
+  "branchName": "ralph/todo-cli",
+  "description": "A simple CLI todo app in Node.js that stores todos in a local JSON file",
   "userStories": [
     {
       "id": "TASK-001",
-      "title": "First small task",
-      "description": "As a developer, I need X so that Y.",
+      "title": "Initialize Node.js project with package.json",
+      "description": "As a developer, I need a basic Node.js project setup so I can start building the CLI app.",
       "acceptanceCriteria": [
-        "Criterion 1",
-        "Criterion 2"
+        "package.json exists with name 'todo-cli' and type 'module'",
+        "A src/index.js entry point exists",
+        "Running 'node src/index.js' does not error"
       ],
       "priority": 1,
       "passes": false,
@@ -17,13 +18,56 @@
     },
     {
       "id": "TASK-002",
-      "title": "Second small task",
-      "description": "As a user, I want X so that Y.",
+      "title": "Add a todo",
+      "description": "As a user, I want to add a todo item from the command line so I can track tasks.",
       "acceptanceCriteria": [
-        "Criterion 1",
-        "Criterion 2"
+        "Running 'node src/index.js add \"Buy milk\"' creates a todo",
+        "Todos are saved to a todos.json file",
+        "Each todo has an id, text, and done (false) field",
+        "Prints confirmation message after adding"
       ],
       "priority": 2,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "TASK-003",
+      "title": "List all todos",
+      "description": "As a user, I want to list all my todos so I can see what I need to do.",
+      "acceptanceCriteria": [
+        "Running 'node src/index.js list' prints all todos",
+        "Shows todo id, text, and status (done or not)",
+        "Shows a message if no todos exist"
+      ],
+      "priority": 3,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "TASK-004",
+      "title": "Mark a todo as done",
+      "description": "As a user, I want to mark a todo as complete so I can track my progress.",
+      "acceptanceCriteria": [
+        "Running 'node src/index.js done <id>' marks that todo as done",
+        "The change persists in todos.json",
+        "Prints confirmation message",
+        "Shows error if id does not exist"
+      ],
+      "priority": 4,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "TASK-005",
+      "title": "Delete a todo",
+      "description": "As a user, I want to remove a todo I no longer need.",
+      "acceptanceCriteria": [
+        "Running 'node src/index.js delete <id>' removes that todo",
+        "The change persists in todos.json",
+        "Prints confirmation message",
+        "Shows error if id does not exist"
+      ],
+      "priority": 5,
       "passes": false,
       "notes": ""
     }

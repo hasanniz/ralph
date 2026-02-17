@@ -1,0 +1,31 @@
+{
+  "project": "MyApp",
+  "branchName": "ralph/feature-name",
+  "description": "Short description of what you're building",
+  "userStories": [
+    {
+      "id": "TASK-001",
+      "title": "First small task",
+      "description": "As a developer, I need X so that Y.",
+      "acceptanceCriteria": [
+        "Criterion 1",
+        "Criterion 2"
+      ],
+      "priority": 1,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "TASK-002",
+      "title": "Second small task",
+      "description": "As a user, I want X so that Y.",
+      "acceptanceCriteria": [
+        "Criterion 1",
+        "Criterion 2"
+      ],
+      "priority": 2,
+      "passes": false,
+      "notes": ""
+    }
+  ]
+}
