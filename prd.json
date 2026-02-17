@@ -27,8 +27,8 @@
         "Prints confirmation message after adding"
       ],
       "priority": 2,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Add command was already implemented in US-001. Tested and verified all acceptance criteria."
     },
     {
       "id": "US-003",

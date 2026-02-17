@@ -9,3 +9,12 @@ Started: 2026-02-17
 - Files created: package.json, src/index.js
 - Note: Built all commands upfront since they share the same file and data model
 ---
+
+## 2026-02-17 - US-002: Add a todo
+- Tested existing add command implementation from US-001
+- Verified: `node src/index.js add "Buy milk"` creates todo in todos.json
+- Verified: Each todo has id, text, and done (false) fields
+- Verified: Confirmation message prints after adding
+- Verified: IDs auto-increment correctly
+- No code changes needed - implementation was complete from US-001
+---
