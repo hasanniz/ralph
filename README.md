@@ -1,11 +1,11 @@
-# Ralph Wiggum Loop
+# Ralph
 
 An iterative AI agent loop that runs Claude Code repeatedly to build software autonomously, one small task at a time. Based on [Geoffrey Huntley's Ralph pattern](https://ghuntley.com/loop/).
 
 ## How It Works
 
-1. You define a list of small tasks (user stories) in `prd.json`
-2. You run `ralph.sh` which loops Claude Code with a fresh context each time
+1. You define a list of small tasks in `prd.json`
+2. `ralph.sh` loops Claude Code with a fresh context each iteration
 3. Each iteration, Claude reads what was done before, picks the next task, implements it, tests it, and commits
 4. When all tasks are done, the loop stops
 
@@ -17,55 +17,51 @@ Each iteration gets a **fresh context window** — Claude relies on `prd.json`, 
 - [jq](https://jqlang.github.io/jq/) for JSON parsing (`brew install jq`)
 - Git initialized in your project
 
-## Files
-
-| File | Purpose |
-|------|---------|
-| `ralph.sh` | The bash loop that runs Claude Code repeatedly |
-| `PROMPT.md` | Instructions Claude receives each iteration |
-| `prd.json` | Your task list — user stories with `passes: true/false` |
-| `prd.json.example` | Example task list you can copy and modify |
-| `progress.txt` | Auto-populated log of what each iteration accomplished |
-
 ## Quick Start
 
-### 1. Create your task list
-
-Copy the example and edit it with your own tasks:
+### 1. Copy Ralph into your project
 
 ```bash
-cp prd.json.example prd.json
+# Copy these files into your project (or a subfolder like scripts/ralph/)
+cp ralph.sh cancel.sh PROMPT.md prd.example.json /path/to/your/project/
 ```
 
-Edit `prd.json` with your stories. Each story needs:
-- `id` — unique identifier (e.g. `US-001`)
+### 2. Create your task list
+
+```bash
+cp prd.example.json prd.json
+```
+
+Edit `prd.json` with your tasks. Each task needs:
+- `id` — unique identifier (e.g. `TASK-001`)
 - `title` — short description
 - `description` — what and why
 - `acceptanceCriteria` — how Claude knows it's done
 - `priority` — execution order (1 = first)
 - `passes` — set to `false` (Ralph flips to `true` when done)
 
-### 2. Customize the prompt
+### 3. Customize the prompt
 
 Edit `PROMPT.md` to match your project:
 - Add your build/test commands
 - Mention your tech stack
 - Add any project-specific rules
 
-### 3. Run the loop
+### 4. Run the loop
 
 ```bash
+chmod +x ralph.sh cancel.sh
 ./ralph.sh 20
 ```
 
-The argument is the max number of iterations (default: 10). Ralph stops early when all stories are complete.
+The argument is the max number of iterations (default: 10). Ralph stops early when all tasks are complete.
 
-### 4. Monitor progress
+### 5. Monitor progress
 
 In a separate terminal:
 
 ```bash
-# Watch story completion status
+# Watch task completion status
 watch -n2 'jq ".userStories[] | {id, title, passes}" prd.json'
 
 # Check the progress log
@@ -75,13 +71,29 @@ cat progress.txt
 git log --oneline
 ```
 
-## Writing Good Stories
+## Cancelling
+
+- **Ctrl+C** — stops Ralph immediately after the current Claude call finishes
+- **`./cancel.sh`** — from another terminal, tells Ralph to stop after the current iteration completes gracefully
+
+## Files
+
+| File | Purpose |
+|------|---------|
+| `ralph.sh` | The bash loop that runs Claude Code repeatedly |
+| `cancel.sh` | Gracefully stop a running Ralph loop |
+| `PROMPT.md` | Instructions Claude receives each iteration (customize for your project) |
+| `prd.example.json` | Template task list — copy as `prd.json` and fill in your tasks |
+| `prd.json` | Your task list (created by you, gitignored) |
+| `progress.txt` | Auto-populated log of what each iteration accomplished (gitignored) |
+
+## Writing Good Tasks
 
 **Do:** Break work into small, focused tasks that fit in one context window.
 
 ```json
 {
-  "id": "US-001",
+  "id": "TASK-001",
   "title": "Add priority column to database",
   "acceptanceCriteria": [
     "Migration adds priority column with default 'medium'",
@@ -90,7 +102,7 @@ git log --oneline
 }
 ```
 
-**Don't:** Write stories that are too big or vague.
+**Don't:** Write tasks that are too big or vague.
 
 ```json
 {
@@ -98,22 +110,15 @@ git log --oneline
 }
 ```
 
-Good story size = one commit worth of work (add a field, create a component, wire up an endpoint).
-
-## Using Ralph on an Existing Project
-
-1. Copy `ralph.sh`, `PROMPT.md`, and `prd.json.example` into your project (e.g. `scripts/ralph/`)
-2. Create a `prd.json` with your feature broken into small stories
-3. Edit `PROMPT.md` to reference your project's build/test commands
-4. Run `./ralph.sh 20` and let it work
+Good task size = one commit worth of work (add a field, create a component, wire up an endpoint).
 
 ## Tips
 
 - **Always set a max iteration limit** as a cost safety net
-- **Start small** — try 3-5 stories first to see how it works
+- **Start small** — try 3-5 tasks first to see how it works
 - **Include test/build checks** in acceptance criteria so Claude verifies its own work
 - **Check `progress.txt`** if something goes wrong — it logs what was tried
-- **Stories run in priority order** — make sure dependencies come first
+- **Tasks run in priority order** — make sure dependencies come first
 
 ## References
 
