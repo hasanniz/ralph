@@ -26,3 +26,12 @@ Started: 2026-02-17
 - Verified: Shows message when no todos exist
 - No code changes needed - implementation was complete from US-001
 ---
+
+## 2026-02-17 - US-004: Mark a todo as done
+- Tested existing done command implementation from US-001
+- Verified: `node src/index.js done 1` marks todo as done
+- Verified: Change persists in todos.json (done field set to true)
+- Verified: Prints confirmation message with todo id and text
+- Verified: Shows error message and exits with code 1 for non-existent id
+- No code changes needed - implementation was complete from US-001
+---

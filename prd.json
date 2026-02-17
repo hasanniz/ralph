@@ -54,8 +54,8 @@
         "Shows error if id does not exist"
       ],
       "priority": 4,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Done command was already implemented in US-001. Tested and verified all acceptance criteria."
     },
     {
       "id": "US-005",
