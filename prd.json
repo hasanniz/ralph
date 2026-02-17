@@ -40,8 +40,8 @@
         "Shows a message if no todos exist"
       ],
       "priority": 3,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "List command was already implemented in US-001. Tested and verified all acceptance criteria."
     },
     {
       "id": "US-004",

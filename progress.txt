@@ -18,3 +18,11 @@ Started: 2026-02-17
 - Verified: IDs auto-increment correctly
 - No code changes needed - implementation was complete from US-001
 ---
+
+## 2026-02-17 - US-003: List all todos
+- Tested existing list command implementation from US-001
+- Verified: `node src/index.js list` prints all todos
+- Verified: Shows todo id, text, and status ([x] for done, [ ] for not done)
+- Verified: Shows message when no todos exist
+- No code changes needed - implementation was complete from US-001
+---
