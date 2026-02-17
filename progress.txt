@@ -35,3 +35,12 @@ Started: 2026-02-17
 - Verified: Shows error message and exits with code 1 for non-existent id
 - No code changes needed - implementation was complete from US-001
 ---
+
+## 2026-02-17 - US-005: Delete a todo
+- Tested existing delete command implementation from US-001
+- Verified: `node src/index.js delete 1` removes the todo from todos.json
+- Verified: Change persists in todos.json (todo removed from array)
+- Verified: Prints confirmation message with todo id and text
+- Verified: Shows error message and exits with code 1 for non-existent id
+- No code changes needed - implementation was complete from US-001
+---

@@ -68,8 +68,8 @@
         "Shows error if id does not exist"
       ],
       "priority": 5,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Delete command was already implemented in US-001. Tested and verified all acceptance criteria."
     }
   ]
 }
