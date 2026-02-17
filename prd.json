@@ -13,8 +13,8 @@
         "Running 'node src/index.js' does not error"
       ],
       "priority": 1,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Implemented all commands in index.js upfront for simplicity."
     },
     {
       "id": "US-002",

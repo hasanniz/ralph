@@ -1,3 +1,11 @@
 # Ralph Progress Log
-Started: (will be populated when you run ralph.sh)
+Started: 2026-02-17
+---
+
+## 2026-02-17 - US-001: Initialize Node.js project with package.json
+- Created package.json with name "todo-cli" and type "module"
+- Created src/index.js entry point with all CLI commands (add, list, done, delete)
+- Running 'node src/index.js' shows usage without errors
+- Files created: package.json, src/index.js
+- Note: Built all commands upfront since they share the same file and data model
 ---
