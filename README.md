@@ -11,6 +11,49 @@ An iterative AI agent loop that runs Claude Code repeatedly to build software au
 
 Each iteration gets a **fresh context window** — Claude relies on `prd.json`, `progress.txt`, and git history for continuity. This prevents hallucination from context bloat.
 
+### The outer loop (`ralph.sh`)
+
+```mermaid
+flowchart LR
+    A[Start] --> B{All tasks\ndone?}
+    B -- Yes --> C[Exit]
+    B -- No --> D[Launch Claude Code\nfresh context]
+    D --> E[Wait for\nClaude to finish]
+    E --> F{Max iterations\nreached?}
+    F -- No --> B
+    F -- Yes --> C
+```
+
+### What Claude does each iteration
+
+```mermaid
+flowchart TD
+    A[Read progress.txt\n+ prd.json] --> B[Pick next task\nhighest priority, passes=false]
+    B --> C[Implement]
+    C --> D[Test]
+    D --> E{Pass?}
+    E -- Yes --> F[Set passes=true\nLog to progress.txt\nGit commit]
+    E -- No --> G[Debug & retry]
+    G --> D
+    G -- Stuck --> H[Log failure\nto progress.txt]
+```
+
+### How state carries across iterations
+
+```mermaid
+flowchart LR
+    subgraph Persistent State
+        P[prd.json\ntask status]
+        L[progress.txt\niteration log]
+        G[Git history\ncommitted code]
+    end
+
+    I1[Iteration 1] --> P & L & G
+    P & L & G --> I2[Iteration 2]
+    I2 --> P & L & G
+    P & L & G --> I3[Iteration 3]
+```
+
 ## Prerequisites
 
 - [Claude Code CLI](https://docs.anthropic.com/en/docs/claude-code) installed globally
