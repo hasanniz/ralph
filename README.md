@@ -15,11 +15,11 @@ Each iteration gets a **fresh context window** — Claude relies on `prd.json`, 
 
 ```mermaid
 flowchart LR
-    A[Start] --> B{All tasks\ndone?}
+    A[Start] --> B{All tasks<br/>done?}
     B -- Yes --> C[Exit]
-    B -- No --> D[Launch Claude Code\nfresh context]
-    D --> E[Wait for\nClaude to finish]
-    E --> F{Max iterations\nreached?}
+    B -- No --> D[Launch Claude Code<br/>fresh context]
+    D --> E[Wait for<br/>Claude to finish]
+    E --> F{Max iterations<br/>reached?}
     F -- No --> B
     F -- Yes --> C
 ```
@@ -28,14 +28,14 @@ flowchart LR
 
 ```mermaid
 flowchart TD
-    A[Read progress.txt\n+ prd.json] --> B[Pick next task\nhighest priority, passes=false]
+    A[Read progress.txt<br/>+ prd.json] --> B[Pick next task<br/>highest priority, passes=false]
     B --> C[Implement]
     C --> D[Test]
     D --> E{Pass?}
-    E -- Yes --> F[Set passes=true\nLog to progress.txt\nGit commit]
+    E -- Yes --> F[Set passes=true<br/>Log to progress.txt<br/>Git commit]
     E -- No --> G[Debug & retry]
     G --> D
-    G -- Stuck --> H[Log failure\nto progress.txt]
+    G -- Stuck --> H[Log failure<br/>to progress.txt]
 ```
 
 ### How state carries across iterations
@@ -43,9 +43,9 @@ flowchart TD
 ```mermaid
 flowchart LR
     subgraph Persistent State
-        P[prd.json\ntask status]
-        L[progress.txt\niteration log]
-        G[Git history\ncommitted code]
+        P[prd.json<br/>task status]
+        L[progress.txt<br/>iteration log]
+        G[Git history<br/>committed code]
     end
 
     I1[Iteration 1] --> P & L & G
