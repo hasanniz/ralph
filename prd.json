@@ -13,8 +13,8 @@
         "Running 'node src/index.js' does not error"
       ],
       "priority": 1,
-      "passes": true,
-      "notes": "Implemented all commands in index.js upfront for simplicity."
+      "passes": false,
+      "notes": ""
     },
     {
       "id": "US-002",
@@ -27,8 +27,8 @@
         "Prints confirmation message after adding"
       ],
       "priority": 2,
-      "passes": true,
-      "notes": "Add command was already implemented in US-001. Tested and verified all acceptance criteria."
+      "passes": false,
+      "notes": ""
     },
     {
       "id": "US-003",
@@ -40,8 +40,8 @@
         "Shows a message if no todos exist"
       ],
       "priority": 3,
-      "passes": true,
-      "notes": "List command was already implemented in US-001. Tested and verified all acceptance criteria."
+      "passes": false,
+      "notes": ""
     },
     {
       "id": "US-004",
@@ -54,8 +54,8 @@
         "Shows error if id does not exist"
       ],
       "priority": 4,
-      "passes": true,
-      "notes": "Done command was already implemented in US-001. Tested and verified all acceptance criteria."
+      "passes": false,
+      "notes": ""
     },
     {
       "id": "US-005",
@@ -68,8 +68,8 @@
         "Shows error if id does not exist"
       ],
       "priority": 5,
-      "passes": true,
-      "notes": "Delete command was already implemented in US-001. Tested and verified all acceptance criteria."
+      "passes": false,
+      "notes": ""
     }
   ]
 }
